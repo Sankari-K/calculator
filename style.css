@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400&display=swap');
+
+* {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 35px;
+    color: #808080;
+}
+
+html {
+    background-color: #a9a9a944;
+}
+.frame {
+    padding: 15px;
+     box-shadow: 0 0 10px 5px #ccc;
+}
+.frame {
+    background-color: white; 
+    width: fit-content;
+    border-radius: 20px;
+}
+ 
+.toggle input {
+    background: url('./images/moon.png') 4px 5px no-repeat; 
+    background-size: 30px 30px; 
+    height: 30px;
+    width: 30px; 
+    padding: 5px;
+    text-indent: -2000%; 
+}
+
+.display {
+    height: 120px;
+    color: #f4ab41;
+}
+
+div.row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.row button {
+    width: 90px;
+    height: 90px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    border: none;
+    background-color: white;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+#eq {
+    width: 200px;
+    height: 90px;
+    border-radius: 200px;
+}
+
+#add, #mul, #sub, #div, #eq {
+    color: #f4ab41;
+    background-color: #e3e9ec;
+} 
+
+#clear {
+    color: #f4ab41;
+}
