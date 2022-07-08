@@ -5,7 +5,9 @@ let themeToggle = document.querySelector("input");
 const toggleStyle = getComputedStyle(themeToggle);
 
 let buttons = document.querySelectorAll("button");
-let operatorButtons = document.querySelectorAll(".sh");
+
+let html = document.querySelector('html');
+let htmlStyle = getComputedStyle(html);
 
 function add(a, b) {
     return a + b;
@@ -44,8 +46,8 @@ function operate(operator, num1, num2) {
 
 themeToggle.addEventListener('click', function() {
     // Change color of calculator 
-    backgroundFrame.style.backgroundColor = backgroundStyle.backgroundColor == "rgb(255, 255, 255)" ? 
-    "rgb(85, 90, 96)" : "rgb(255, 255, 255)"; 
+    backgroundFrame.style.backgroundColor = backgroundStyle.backgroundColor == "rgb(209, 172, 165)" ? 
+    "rgb(85, 90, 96)" : "rgb(209, 172, 165)"; 
     // Change picture of theme toggle
     themeToggle.style.background = toggleStyle.background.includes("moon") ? 
     'rgba(0, 0, 0, 0) url("http://127.0.0.1:5500/images/sun.png") no-repeat scroll 4px 5px / 30px 30px padding-box border-box' :
@@ -54,21 +56,11 @@ themeToggle.addEventListener('click', function() {
     buttons = [...buttons];
     buttons.forEach((button) => {
         const buttonStyle = getComputedStyle(button);
-        button.style.backgroundColor = buttonStyle.backgroundColor === "rgb(255, 255, 255)" ?
-         "rgb(85, 90, 96)" : 
-         "rgb(255, 255, 255)";
+        button.style.backgroundColor = buttonStyle.backgroundColor === "rgb(226, 207, 201)" ?
+         "rgb(153, 159, 165)" : 
+         "rgb(226, 207, 201)";
     })
-    // Change background color for operator buttons
-    operatorButtons = [...operatorButtons];
-    operatorButtons.forEach((button) => {
-        const opButtonStyle = getComputedStyle(button);
-        console.log(opButtonStyle.backgroundColor, backgroundFrame.style.backgroundColor);
-        if (backgroundFrame.style.backgroundColor === "rgb(85, 90, 96)") {
-            button.style.backgroundColor = "rgb(108, 106, 99)";
-        }
-        else {
-            button.style.backgroundColor = "rgb(227, 233, 236)";
-        }
-    }) 
-    
+    // Change background color of page 
+    html.style.backgroundColor = htmlStyle.backgroundColor == "rgba(226, 207, 201, 0.6)" ? 
+    "rgba(153, 159, 165, 0.6)" : "rgba(226, 207, 201, 0.6)"; 
 })
