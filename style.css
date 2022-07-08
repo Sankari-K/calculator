@@ -26,14 +26,15 @@ html {
 }
 
 .display {
-    height: 120px;
-    padding: 5px;
+    height: 100px;
+    padding: 10px;
     margin: 5px;
     color: #ffffff;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 45px;
     background-color: #ffffff33;
     border-radius: 5px;
+    text-align: right;
 }
 
 div.row {
