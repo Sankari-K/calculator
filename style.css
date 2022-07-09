@@ -26,12 +26,12 @@ html {
 }
 
 .display {
-    height: 100px;
+    height: 70px;
     padding: 10px;
     margin: 5px;
     color: #ffffff;
     font-weight: 600;
-    font-size: 45px;
+    font-size: 50px;
     background-color: #ffffff33;
     border-radius: 5px;
     text-align: right;
@@ -53,6 +53,10 @@ button {
     color: white;
 }
 
+button:hover {
+    transform: scale(1.15);
+    transition: all .5s ease-in-out;
+}
 body {
     min-height: 100%;
     display: flex;

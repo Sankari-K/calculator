@@ -28,32 +28,52 @@ operatorButtons.forEach((button) =>
     button.addEventListener('click', getOperatorInput));
 
 function getNumInput(e) {
+    if (display.innerText.includes("Infinity")) {
+        console.log("yes");
+        clearAllElements();
+    }
+
     if (firstTime || display.innerText == '0') {
         cleanUpDisplay();
         firstTime = false;
     }
-
     if (operatorPressed == '=') {   // comment out
+        console.log("is operator equals");
         display.innerText = '';
         num1 = '';
+        operatorPressed = ''; // checkkkkkkkkkkkkkkkk
     }
     let keyPressed = e.composedPath()[0].innerText; // of type string
+    
+    if (!operator) {
+        if (isSmall(num1)) {
+            num1 += keyPressed;
+            display.innerText += keyPressed;
+        }     
+    }
+    else {
+        if (isSmall(num2)) {
+            num2 += keyPressed;
+            display.innerText += keyPressed;
+        } 
+    }
     console.log(keyPressed, operatorPressed);
     console.log("num1", num1);
     console.log("num2", num2);
     console.log("operator", operator);
-    
-    if (!operator) {
-         num1 += keyPressed;
-    }
-    else {
-        num2 += keyPressed;
-    }
-    display.innerText += keyPressed;
+    //display.innerText += keyPressed;
 }
 
 let operatorPressed;
 function getOperatorInput(e) {
+    // If there's a math error, clean everything up
+    if (display.innerText.includes("Infinity")) {
+        console.log("yessir");
+        clearAllElements();
+        display.innerText = '';
+        operatorPressed = '';
+    }
+    
     operatorPressed = e.composedPath()[0].innerText;
     if (operatorPressed != "=") {
         if (operator != '') { // If an operator was pressed already, evaluate that previous expression first
@@ -69,6 +89,7 @@ function getOperatorInput(e) {
         if (num1 && num2) {
             display.innerText = operate(operator, num1, num2);
             operator = '';
+            /////////////operatorPressed = ''; //Check!!!
             num1 = display.innerText;
             num2 = '';
         }
@@ -90,6 +111,7 @@ function clearAllElements() {
     num2 = '';
     operator = '';
     display.innerText = '0';
+    operatorPressed = ''; 
 }
 
 
@@ -135,6 +157,9 @@ function operate(operator, num1, num2) {
     return res;
 }
 
+function isSmall(n) { /// BUG!!!
+    return n.length < 8;
+}
 
 // Light and dark mode toggle
 themeToggle.addEventListener('click', function() {
