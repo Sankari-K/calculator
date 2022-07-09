@@ -29,7 +29,7 @@ operatorButtons.forEach((button) =>
 
 function getNumInput(e) {
     if (display.innerText.includes("Infinity") || display.innerText.includes("NaN")) {
-        console.log("yes");
+        display.innerText = '';
         clearAllElements();
     }
     if (display.innerText.length >= 17) {
@@ -40,22 +40,22 @@ function getNumInput(e) {
         cleanUpDisplay();
         firstTime = false;
     }
-    if (operatorPressed == '=') {   // comment out
+    if (operatorPressed == '=') {   
         console.log("is operator equals");
         display.innerText = '';
         num1 = '';
-        operatorPressed = ''; // checkkkkkkkkkkkkkkkk
+        operatorPressed = ''; 
     }
     let keyPressed = e.composedPath()[0].innerText; // of type string
     
     if (!operator) {
-        if (isSmall(num1)) {   
+        if (isSmall(num1) && isValidDecimal(keyPressed, num1)) {   
             num1 += keyPressed;
             display.innerText += keyPressed;
         }     
     }
     else {
-        if (isSmall(num2)) {
+        if (isSmall(num2) && isValidDecimal(keyPressed, num2)) {
             num2 += keyPressed;
             display.innerText += keyPressed;
         } 
@@ -71,10 +71,9 @@ let operatorPressed;
 function getOperatorInput(e) {
     // If there's a math error, clean everything up
     if (display.innerText.includes("Infinity") || display.innerText.includes("NaN")) {
-        console.log("yessir");
         clearAllElements();
         display.innerText = '';
-        operatorPressed = '';
+        //operatorPressed = '';
     }
     
     if (display.innerText.length > 17) {
@@ -135,11 +134,11 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    return +((a * b).toFixed(2));
+    return +((a * b).toFixed(3));
 }
 
 function divide(a, b) {
-    return +((a / b).toFixed(2));
+    return +((a / b).toFixed(3));
 }
 
 function operate(operator, num1, num2) {
@@ -167,6 +166,10 @@ function isSmall(n) { /// BUG!!!
     return n.length < 8;
 }
 
+
+function isValidDecimal(key, num) {
+    return !(key == '.' && num.includes("."));
+}
 // Light and dark mode toggle
 themeToggle.addEventListener('click', function() {
     // Change color of calculator 
