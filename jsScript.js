@@ -7,6 +7,7 @@ const toggleStyle = getComputedStyle(themeToggle);
 let buttons = document.querySelectorAll("button");
 let numberButtons = document.querySelectorAll(".num");
 let operatorButtons = document.querySelectorAll(".sh");
+let unaryButtons = document.querySelectorAll(".unary");
 
 let html = document.querySelector('html');
 let htmlStyle = getComputedStyle(html);
@@ -27,11 +28,10 @@ numberButtons.forEach((button) =>
 operatorButtons.forEach((button) =>
     button.addEventListener('click', getOperatorInput));
 
+unaryButtons.forEach((button) =>
+    button.addEventListener('click', getUnaryInput));
+
 function getNumInput(e) {
-    if (display.innerText.includes("Infinity") || display.innerText.includes("NaN")) {
-        display.innerText = '';
-        clearAllElements();
-    }
     if (display.innerText.length >= 17) {
         window.alert("Overflow! The calculator can't solve such large calculations :(");
         clearAllElements();
@@ -41,7 +41,7 @@ function getNumInput(e) {
         firstTime = false;
     }
     if (operatorPressed == '=') {   
-        console.log("is operator equals");
+        //console.log("is operator equals");
         display.innerText = '';
         num1 = '';
         operatorPressed = ''; 
@@ -60,21 +60,14 @@ function getNumInput(e) {
             display.innerText += keyPressed;
         } 
     }
-    console.log(keyPressed, operatorPressed);
-    console.log("num1", num1);
-    console.log("num2", num2);
-    console.log("operator", operator);
-    //display.innerText += keyPressed;
+    // console.log(keyPressed, operatorPressed);
+    // console.log("num1", num1);
+    // console.log("num2", num2);
+    // console.log("operator", operator);
 }
 
 let operatorPressed;
 function getOperatorInput(e) {
-    // If there's a math error, clean everything up
-    if (display.innerText.includes("Infinity") || display.innerText.includes("NaN")) {
-        clearAllElements();
-        display.innerText = '';
-        //operatorPressed = '';
-    }
     
     if (display.innerText.length > 17) {
         window.alert("Overflow! The calculator can't solve such large calculations :(");
@@ -90,6 +83,12 @@ function getOperatorInput(e) {
             }
             display.innerText = '';
             num1 = operate(operator, num1, num2);
+            if (num1 == Infinity || num1 == NaN) {
+                window.alert("That's a math error -_-");
+                clearAllElements();
+                display.innerText = '';
+                return;
+            }
             num2 = '';
             display.innerText += num1;
         } 
@@ -99,12 +98,46 @@ function getOperatorInput(e) {
     else { // If it is +,  -, /, or * operators
         if (num1 && num2) {
             display.innerText = operate(operator, num1, num2);
+            if (display.innerText == Infinity || display.innerText == NaN) {
+                window.alert("That's a math error -_-");
+                clearAllElements();
+                display.innerText = '';
+                return;
+            }
             operator = '';
             num1 = display.innerText;
             num2 = '';
         }
         else {
             clearAllElements();
+        }
+    }
+}
+
+function getUnaryInput(e) {
+    console.log(e);
+    console.log(num1, num2);
+    console.log("the last operator was", operator);
+    
+    let unaryOperatorPressed = e.composedPath()[0];
+    if (unaryOperatorPressed.innerText == '%') {
+        if (operator) {
+            display.innerText = display.innerText.replace(num2, num2 / 100);
+            num2 = num2/100;
+        }
+        else {
+            num1 = num1/100;
+            display.innerText = num1;
+        }
+    }
+    else {
+        if (operator) {
+            display.innerText = display.innerText.replace(num2, -1 * num2);
+            num2 = -1 * num2;
+        }
+        else {
+            num1 = -1 * num1;
+            display.innerText = num1;
         }
     }
 }
@@ -134,11 +167,11 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    return +((a * b).toFixed(3));
+    return +((a * b).toFixed(4));
 }
 
 function divide(a, b) {
-    return +((a / b).toFixed(3));
+    return +((a / b).toFixed(4));
 }
 
 function operate(operator, num1, num2) {
@@ -155,14 +188,14 @@ function operate(operator, num1, num2) {
         case 'x':
             res = multiply(num1, num2);
             break;
-        case '/':
+        case '÷':
             res = divide(num1, num2);
             break;
     }
     return res;
 }
 
-function isSmall(n) { /// BUG!!!
+function isSmall(n) { 
     return n.length < 8;
 }
 

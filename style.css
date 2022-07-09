@@ -55,15 +55,29 @@ button {
 
 button:hover {
     transform: scale(1.15);
-    transition: all .5s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 body {
     min-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    display: flex;
+    flex-direction: column;
 } 
 
+
+.footer span{
+    font-size: 20px;
+    margin: 10px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .eq {
     width: 200px;
     height: 90px;
