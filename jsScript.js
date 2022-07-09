@@ -28,11 +28,14 @@ operatorButtons.forEach((button) =>
     button.addEventListener('click', getOperatorInput));
 
 function getNumInput(e) {
-    if (display.innerText.includes("Infinity")) {
+    if (display.innerText.includes("Infinity") || display.innerText.includes("NaN")) {
         console.log("yes");
         clearAllElements();
     }
-
+    if (display.innerText.length >= 17) {
+        window.alert("Overflow! The calculator can't solve such large calculations :(");
+        clearAllElements();
+    } 
     if (firstTime || display.innerText == '0') {
         cleanUpDisplay();
         firstTime = false;
@@ -46,7 +49,7 @@ function getNumInput(e) {
     let keyPressed = e.composedPath()[0].innerText; // of type string
     
     if (!operator) {
-        if (isSmall(num1)) {
+        if (isSmall(num1)) {   
             num1 += keyPressed;
             display.innerText += keyPressed;
         }     
@@ -67,16 +70,25 @@ function getNumInput(e) {
 let operatorPressed;
 function getOperatorInput(e) {
     // If there's a math error, clean everything up
-    if (display.innerText.includes("Infinity")) {
+    if (display.innerText.includes("Infinity") || display.innerText.includes("NaN")) {
         console.log("yessir");
         clearAllElements();
         display.innerText = '';
         operatorPressed = '';
     }
     
+    if (display.innerText.length > 17) {
+        window.alert("Overflow! The calculator can't solve such large calculations :(");
+        clearAllElements();
+    } 
+
     operatorPressed = e.composedPath()[0].innerText;
     if (operatorPressed != "=") {
         if (operator != '') { // If an operator was pressed already, evaluate that previous expression first
+            // If num2 ain't defined, just switch the operator
+            if (!num2) {
+                operator = operatorPressed;
+            }
             display.innerText = '';
             num1 = operate(operator, num1, num2);
             num2 = '';
@@ -89,7 +101,6 @@ function getOperatorInput(e) {
         if (num1 && num2) {
             display.innerText = operate(operator, num1, num2);
             operator = '';
-            /////////////operatorPressed = ''; //Check!!!
             num1 = display.innerText;
             num2 = '';
         }
@@ -115,11 +126,6 @@ function clearAllElements() {
 }
 
 
-
-
-
-
-
 function add(a, b) {
     return a + b;
 }
@@ -129,7 +135,7 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    return a * b;
+    return +((a * b).toFixed(2));
 }
 
 function divide(a, b) {
