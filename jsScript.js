@@ -41,7 +41,7 @@ unaryButtons.forEach((button) =>
 
 // In case a number key is pressed
 function getNumInput(e) {
-    // To prevent the calculator from losing it's shape
+    // To prevent the calculator from losing its shape
     if (display.innerText.length >= 17) {
         window.alert("Overflow! The calculator can't solve such large calculations :(");
         clearAllElements();
@@ -84,7 +84,7 @@ function getNumInput(e) {
 
 let operatorPressed;
 function getOperatorInput(e) {   // If it is +,  -, /, or * operators
-    // To prevent the calculator from losing it's shape
+    // To prevent the calculator from losing its shape
     if (display.innerText.length > 17) {
         window.alert("Overflow! The calculator can't solve such large calculations :(");
         clearAllElements();
@@ -129,7 +129,7 @@ function getOperatorInput(e) {   // If it is +,  -, /, or * operators
                 return;
             }
             operator = '';
-            num1 = display.innerText; // DIsplaying the result, and assigning it to num1 for next calculation
+            num1 = display.innerText; // Displaying the result, and assigning it to num1 for next calculation
             num2 = '';
         }
         else {
