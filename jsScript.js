@@ -255,8 +255,8 @@ themeToggle.addEventListener('click', function() {
     "rgba(133,127, 116, 0.33)": "rgba(255,255,255, 0.2)";
     // Change picture of theme toggle
     themeToggle.style.background = toggleStyle.background.includes("moon") ? 
-    'rgba(0, 0, 0, 0) url("http://127.0.0.1:5500/images/sun.png") no-repeat scroll 4px 5px / 30px 30px padding-box border-box' :
-    'rgba(0, 0, 0, 0) url("http://127.0.0.1:5500/images/moon.png") no-repeat scroll 4px 5px / 30px 30px padding-box border-box';
+    'rgba(0, 0, 0, 0) url("./images/sun.png") no-repeat scroll 4px 5px / 30px 30px padding-box border-box' :
+    'rgba(0, 0, 0, 0) url("./images/moon.png") no-repeat scroll 4px 5px / 30px 30px padding-box border-box';
 
     // Change button color - the numeric normal ones
     buttons = [...buttons];
