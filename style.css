@@ -6,12 +6,12 @@
 }
 
 html {
-    background-color: #e2cfc999; 
+    background-color: #e2cfc999; /*#857f7499; */
 }
 .frame {
     padding: 15px;
-    box-shadow: 0 0 10px 5px #ccc;
-    background-color: #d1aca5; 
+    box-shadow: 0 0 10px 5px #ffffff33;
+    background-color: #d1aca5; /*#595358; */
     width: fit-content;
     border-radius: 20px;
 }
@@ -29,10 +29,10 @@ html {
     height: 70px;
     padding: 10px;
     margin: 5px;
-    color: #ffffff;
+    color: #ffffff;  /*#a4ac96;*/
     font-weight: 600;
     font-size: 50px;
-    background-color: #ffffff33;
+    background-color: #ffffff33; /* #857f7455; */
     border-radius: 5px;
     text-align: right;
 }
@@ -49,8 +49,9 @@ button {
     padding: 2px;
     border-radius: 5px;
     border: none;
-    background-color: #e2cfc9; 
+    background-color: #e2cfc9;  /*#857f74; */
     color: white;
+    /* color: #eaf4f4;  #ffffff; #a4ac96; */
 }
 
 button:hover {

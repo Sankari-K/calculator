@@ -14,6 +14,7 @@ let html = document.querySelector('html');
 let htmlStyle = getComputedStyle(html);
 
 let display = document.querySelector('.display');
+let displayStyle = getComputedStyle(display);
 let displayFlag = false;
 
 let clear = document.querySelector("#clear");
@@ -244,8 +245,14 @@ function operate(operator, num1, num2) {
 themeToggle.addEventListener('click', function() {
     // Change color of calculator 
     backgroundFrame.style.backgroundColor = backgroundStyle.backgroundColor == "rgb(209, 172, 165)" ? 
-    "rgb(85, 90, 96)" : "rgb(209, 172, 165)"; 
+    "rgb(89, 83, 88)" : "rgb(209, 172, 165)"; 
+    // frame's box shadow??
 
+    // Display portion's color and bg color
+    display.style.color = displayStyle.color == "rgb(255, 255, 255)" ?
+    "rgb(164, 172, 150)": "rgb(255, 255, 255)";
+    display.style.backgroundColor = displayStyle.backgroundColor == "rgba(255, 255, 255, 0.2)" ?
+    "rgba(133,127, 116, 0.33)": "rgba(255,255,255, 0.2)";
     // Change picture of theme toggle
     themeToggle.style.background = toggleStyle.background.includes("moon") ? 
     'rgba(0, 0, 0, 0) url("http://127.0.0.1:5500/images/sun.png") no-repeat scroll 4px 5px / 30px 30px padding-box border-box' :
@@ -256,12 +263,14 @@ themeToggle.addEventListener('click', function() {
     buttons.forEach((button) => {
         const buttonStyle = getComputedStyle(button);
         button.style.backgroundColor = buttonStyle.backgroundColor === "rgb(226, 207, 201)" ?
-         "rgb(153, 159, 165)" : 
+         "rgb(133, 127, 116)" : 
          "rgb(226, 207, 201)";
+        button.style.color = buttonStyle.color == "rgb(255, 255, 255)" ?
+         "rgb(164, 172, 150)": "rgb(255, 255, 255)";
     })
     // Change background color of page 
     html.style.backgroundColor = htmlStyle.backgroundColor == "rgba(226, 207, 201, 0.6)" ? 
-    "rgba(153, 159, 165, 0.6)" : "rgba(226, 207, 201, 0.6)"; 
+    "rgba(133, 127, 116, 0.6)" : "rgba(226, 207, 201, 0.6)"; 
 })
 
 // Event listeners for keyboard support
@@ -275,5 +284,8 @@ window.addEventListener('keydown', function(e) {
     }
     else if ('%±'.includes(e.key)) {
         getUnaryInput(e.key);
+    }
+    else if (e.key == 'Delete'){
+        clearAllElements();
     }
 })
