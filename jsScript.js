@@ -153,11 +153,11 @@ function getUnaryInput(e) {
         if (operator) {
             // Replace last instance of num (in display text) with 0.01 times that
             let n = display.innerText.lastIndexOf(num2);
-            display.innerText = display.innerText.slice(0, n) + display.innerHTML.slice(n).replace(num2, num2/100);
-            num2 = num2/100;
+            display.innerText = display.innerText.slice(0, n) + display.innerHTML.slice(n).replace(num2, (num2/100).toFixed(6));
+            num2 = (num2/100).toFixed(6);
         }
         else {
-            num1 = num1/100;
+            num1 = (num1/100).toFixed(6);
             display.innerText = num1;
         }
     }
